@@ -27,7 +27,7 @@ pipeline{
             agent any
             steps {
                 script {
-                    sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                    sh 'docker build -t $URL_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .'
                 }
             }
         }
@@ -38,9 +38,9 @@ pipeline{
             steps {
                 script {
                     sh '''
-                        echo "Clean Environment"
-                        docker rm -f $IMAGE_NAME || echo "container does not exist"
-                        docker run --name $IMAGE_NAME -d -p $PORT_EXPOSED:5000 -e PORT=5000 eazytraining/$IMAGE_NAME:$IMAGE_TAG
+                        echo "Nettoyer l'environnement"
+                        docker rm -f $IMAGE_NAME || echo "Mon container n'existe pas"
+                        docker run --name $IMAGE_NAME -d -p $PORT_EXPOSED:5000 -e PORT=5000 $URL_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
                         sleep 5
                     '''
                 }
