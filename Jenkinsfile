@@ -5,7 +5,7 @@ pipeline{
         IMAGE_NAME = 'webstatic'
         IMAGE_TAG = 'latest'
         PORT_EXPOSED = '${PORT_EXPOSED}'
-        URL_REGISTRY = 'https://registry.iforce5demo.com'
+        URL_REGISTRY = 'registry.iforce5demo.com'
         STAGING = ''
         PRODUCTION = ''
     }
