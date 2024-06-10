@@ -13,6 +13,12 @@ pipeline{
     // Aucun agent spécifique, cela signifie que les étapes peuvent être exécutées sur n'importe quel agent disponible
     agent none
 
+    // Configuration des options du pipeline
+    options{
+        // Utilisation d'un logRotator pour gérer la suppression des anciens builds et artefacts
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
+
     // Définition des étapes du pipeline
     stages {
 
