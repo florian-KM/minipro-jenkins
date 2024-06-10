@@ -19,6 +19,13 @@ pipeline{
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
 
+    // Définition des outils utilisés par le pipeline
+    tools {
+        // Spécification de l'outil Git à utiliser, avec le nom 'git-jenkins'
+        git 'git-jenkins'
+    }
+
+
     // Définition des étapes du pipeline
     stages {
 
