@@ -118,4 +118,8 @@ pipeline{
         } 
     }
 
+   
+
 }
+
+ def notificationSlack(String result) {  echo "Notifying Slack with result: ${result}" }
