@@ -52,7 +52,7 @@ pipeline{
             }
         }
 
-        Etape de test de l'image en vérifiant si elle renvoie 'hello world!' lorsqu'on accède à son URL
+        //Etape de test de l'image en vérifiant si elle renvoie 'hello world!' lorsqu'on accède à son URL
         stage ('Test image') {
             agent any
             steps {
