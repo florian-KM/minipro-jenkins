@@ -4,7 +4,7 @@ pipeline{
     environment{
         IMAGE_NAME = 'webstatic'
         IMAGE_TAG = 'latest'
-        PORT_EXPOSED = '${PORT_EXPOSED}'
+        // PORT_EXPOSED = '${PORT_EXPOSED}'
         URL_REGISTRY = 'registry.iforce5demo.com'
         STAGING = ''
         PRODUCTION = ''
@@ -20,10 +20,10 @@ pipeline{
     }
 
     // Définition des outils utilisés par le pipeline
-    tools {
-        // Spécification de l'outil Git à utiliser, avec le nom 'git-jenkins'
-        git 'git-jenkins'
-    }
+    // tools {
+    //     // Spécification de l'outil Git à utiliser, avec le nom 'git-jenkins'
+    //     git 'git-jenkins'
+    // }
 
 
     // Définition des étapes du pipeline
