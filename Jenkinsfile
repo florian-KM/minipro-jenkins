@@ -11,6 +11,7 @@ pipeline{
         URL_REGISTRY = 'registry.iforce5demo.com'
         STAGING = ''
         PRODUCTION = ''
+        HOSTNAME_DEPLOY_STAGING = '192.168.100.32'
     }
 
     // Aucun agent spécifique, cela signifie que les étapes peuvent être exécutées sur n'importe quel agent disponible
@@ -92,18 +93,18 @@ pipeline{
 
          // Deployer
         stage ('Deploy in staging') {
-                when {
-                    expression { GIT_BRANCH == 'main' }
-                }
-                steps {
-                        sshagent(credentials: [SSH_FORGE]) {
-                          sh '''
-                              [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-                              ssh-keyscan -t rsa ${HOSTNAME_DEPLOY_STAGING} >> ~/.ssh/known_hosts
-                              echo " bonne nouvelle "
-                          '''
-                        }
-                }
+            when {
+                expression { GIT_BRANCH == 'main' }
+            }
+            steps {
+                    sshagent(credentials: [SSH_FORGE]) {
+                        sh '''
+                            [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+                            ssh-keyscan -t rsa ${HOSTNAME_DEPLOY_STAGING} >> ~/.ssh/known_hosts
+                            echo " bonne nouvelle "
+                        '''
+                    }
+            }
         }
     }
 
