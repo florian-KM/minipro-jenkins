@@ -80,17 +80,17 @@ pipeline{
         }
 
         // Etape de connexion au registre Docker et de pousser l'image construite
-        stage ('Login docker container et push') {
-            agent any
-            steps {
-                script {
-                    sh '''
-                        echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_ID --password-stdin
-                        docker push ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
-                    '''
-                }
-            }
-        }
+        // stage ('Login docker container et push') {
+        //     agent any
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_ID --password-stdin
+        //                 docker push ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
+        //             '''
+        //         }
+        //     }
+        // }
 
 
 
