@@ -1,8 +1,8 @@
 /* import shared library */
-@Library('shared-librairy') _
+@Library('shared-librairy')_
 
 pipeline{
-    
+
     // Définition des variables d'environnement
     environment{
         IMAGE_NAME = 'webstatic'
@@ -90,8 +90,21 @@ pipeline{
         // }
 
 
-
-
+         // Deployer
+        stage ('Deploy in staging') {
+                when {
+                    expression { GIT_BRANCH == 'main' }
+                }
+                steps {
+                        sshagent(credentials: [SSH_FORGE]) {
+                          sh '''
+                              [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+                              ssh-keyscan -t rsa ${HOSTNAME_DEPLOY_STAGING} >> ~/.ssh/known_hosts
+                              echo " bonne nouvelle "
+                          '''
+                        }
+                }
+        }
     }
 
    // Actions à effectuer après l'exécution du pipeline
