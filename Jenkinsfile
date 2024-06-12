@@ -1,4 +1,4 @@
-
+@Library('shared-librairy')_
 pipeline{
     // Définition des variables d'environnement
     environment{
@@ -92,18 +92,17 @@ pipeline{
             }
         }
 
+
+
+
     }
 
-    // Actions à effectuer après l'exécution du pipeline
+   // Actions à effectuer après l'exécution du pipeline
     post {
-        success {
-            // Envoie d'un message de succès à Slack avec des liens vers l'application en production et en staging
-            slackSend (color: '#00FF00', message: "NAME - SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) - PROD URL => http://${PROD_APP_ENDPOINT} , STAGING URL => http://${STG_APP_ENDPOINT}")
-        }
-        failure {
-            // Envoie d'un message d'échec à Slack en cas d'échec du pipeline
-            slackSend (color: '#FF0000', message: "NAME - FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-        }
-    }
+    always {
+      script {
+        notification-slack currentBuild.result
+      }
+    } 
 
 }
