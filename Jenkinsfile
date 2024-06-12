@@ -112,7 +112,8 @@ pipeline{
     post {
         always {
             script {
-                notification-slack currentBuild.result
+                // notification-slack currentBuild.result
+                def result = currentBuild.result ?: 'SUCCESS' notificationSlack(result)
             }
         } 
     }
