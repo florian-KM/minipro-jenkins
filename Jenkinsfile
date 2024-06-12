@@ -99,10 +99,11 @@ pipeline{
 
    // Actions à effectuer après l'exécution du pipeline
     post {
-    always {
-      script {
-        notification-slack currentBuild.result
-      }
-    } 
+        always {
+            script {
+                notification-slack currentBuild.result
+            }
+        } 
+    }
 
 }
