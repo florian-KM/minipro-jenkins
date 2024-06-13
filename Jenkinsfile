@@ -57,9 +57,7 @@ pipeline{
             agent any
             steps {
                 script {
-                    sh '''
-                        curl http://172.17.0.1:$PORT_EXPOSED | grep -q 'Hello world!'
-                    '''
+                    sh ' curl http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello world!"'
                 }
             }
         }
