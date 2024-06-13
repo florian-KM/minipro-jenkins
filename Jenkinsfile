@@ -58,7 +58,7 @@ pipeline{
             steps {
                 script {
                     sh '''
-                        curl http://172.17.0.2:$PORT_EXPOSED 
+                        curl http://172.17.0.2:$PORT_EXPOSED | grep -q 'Hello world!'
                     '''
                 }
             }
@@ -112,12 +112,12 @@ pipeline{
     post {
         always {
             script {
-                // notification-slack currentBuild.result
-                def result = currentBuild.result ?: 'SUCCESS' notificationSlack(result)
+                //notification-slack currentBuild.result
+                //def result = currentBuild.result ?: 'SUCCESS' notificationSlack(result)
             }
         } 
     }
 
 }
 
- def notificationSlack(String result) {  echo "Notifying Slack with result: ${result}" }
+//  def notificationSlack(String result) {  echo "Notifying Slack with result: ${result}" }
