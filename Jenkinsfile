@@ -57,9 +57,9 @@ pipeline{
             agent any
             steps {
                 script {
-                    sh ' curl http://172.17.0.1:${PORT_EXPOSED} | -i "Welcome"'
+                    sh ' curl http://172.17.0.1:${PORT_EXPOSED} | grep -i "Welcome"'
                 }
-            }
+            } 
         }
 
         // Etape de nettoyage du conteneur
