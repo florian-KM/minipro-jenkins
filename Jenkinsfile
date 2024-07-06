@@ -5,7 +5,7 @@ pipeline{
 environment{
     IMAGE_NAME = 'webstatic'
     PORT_EXPOSED = 81
-    REGISTRY_URL = 'https://registry.iforce5demo.com'
+    REGISTRY_URL = 'registry.iforce5demo.com'
     IMAGE_TAG = "1.0"
     SSH_USER_RELEASE = "root"
     SSH_USER_STAGING = "administrator"
