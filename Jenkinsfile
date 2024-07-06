@@ -33,7 +33,7 @@ stages {
         agent any
         steps {
             script {
-                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+                sh 'docker build -t ${URL_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
     }
