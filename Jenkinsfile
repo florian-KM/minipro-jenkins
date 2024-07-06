@@ -7,7 +7,7 @@ environment{
     PORT_EXPOSED = 81
     REGISTRY_URL = 'registry.iforce5demo.com'
     IMAGE_TAG = "1.0"
-    SSH_USER_RELEASE = "root"
+    SSH_USER_RELEASE = "administrator"
     SSH_USER_STAGING = "administrator"
     SSH_HOST_STAGING = "192.168.100.32"
     SSH_HOST_RELEASE = "192.168.100.32"
