@@ -4,7 +4,7 @@ pipeline{
 // Définition des variables d'environnement
 environment{
     IMAGE_NAME = 'webstatic'
-    PORT_EXPOSED = '${PORT_EXPOSED}'
+    PORT_EXPOSED = 81
     URL_REGISTRY = 'https://registry.iforce5demo.com/'
     IMAGE_TAG = "1.0"
     SSH_USER_RELEASE = "root"
