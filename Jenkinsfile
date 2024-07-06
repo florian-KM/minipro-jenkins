@@ -14,8 +14,8 @@ environment{
     DOCKERHUB_AUTH = credentials('DOCKER_HUB')
 }
 
-// Aucun agent spécifique, cela signifie que les étapes peuvent être exécutées sur n'importe quel agent disponible
-agent none
+// un agent spécifique, cela signifie que les étapes peuvent être exécutées sur n'importe quel agent disponible
+agent any
 
 options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'));
@@ -30,17 +30,15 @@ stages {
 
     // Etape de construction de l'image Docker
     stage ('Build image') {
-        agent any
         steps {
             script {
-                sh 'docker build -t ${URL_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .'
+                sh 'docker build -t ${REGISTRY_URL}/${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
     }
 
     // Etape de démarrage du conteneur basé sur l'image construite
     stage ('Run container based on build images') {
-        agent any
         steps {
             script {
                 sh '''
@@ -55,7 +53,6 @@ stages {
 
     // Etape de test de l'image en vérifiant si elle renvoie 'hello world!' lorsqu'on accède à son URL
     stage ('Test image') {
-        agent any
         steps {
             script {
                 sh '''
@@ -67,7 +64,6 @@ stages {
 
     // Etape de nettoyage du conteneur
     stage ('Clean Container') {
-        agent any
         steps {
             script {
                 sh '''
@@ -79,7 +75,6 @@ stages {
 
     // Etape de connexion au registre Docker et de pousser l'image construite
     stage ('Login docker container et push') {
-        agent any
         steps {
             script {
                 sh '''
