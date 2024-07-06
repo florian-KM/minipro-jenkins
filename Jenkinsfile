@@ -3,16 +3,12 @@ environment{
     IMAGE_NAME = 'webstatic'
     PORT_EXPOSED = '${PORT_EXPOSED}'
     URL_REGISTRY = 'https://registry.iforce5demo.com/'
-    IMAGE_NAME = "sgt_frontend"
     IMAGE_TAG = "1.0"
-    KEY_CURL = "Aurore-SGT"
     SSH_USER_RELEASE = "root"
     SSH_USER_STAGING = "administrator"
     SSH_HOST_STAGING = "192.168.100.32"
-    SSH_HOST_RELEASE = "142.44.162.120"
+    SSH_HOST_RELEASE = "192.168.100.32"
     DOCKERHUB_AUTH = credentials('DOCKER_HUB')
-    PATH_STAGING = "/home/administrator/projets/'Aurore sgt'/devops"
-    PATH_RELEASE = "/root/Projets/aurore_sgt/devops"
 }
 
 // Aucun agent spécifique, cela signifie que les étapes peuvent être exécutées sur n'importe quel agent disponible
@@ -34,7 +30,7 @@ stages {
         agent any
         steps {
             script {
-                sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
     }
