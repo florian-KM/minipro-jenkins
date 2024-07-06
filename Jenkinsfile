@@ -1,3 +1,6 @@
+pipeline{
+
+
 // Définition des variables d'environnement
 environment{
     IMAGE_NAME = 'webstatic'
@@ -179,4 +182,6 @@ post {
     }
 }
 
+
+}
 
