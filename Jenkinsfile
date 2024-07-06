@@ -5,7 +5,7 @@ pipeline{
 environment{
     IMAGE_NAME = 'webstatic'
     PORT_EXPOSED = 81
-    URL_REGISTRY = 'https://registry.iforce5demo.com'
+    REGISTRY_URL = 'https://registry.iforce5demo.com'
     IMAGE_TAG = "1.0"
     SSH_USER_RELEASE = "root"
     SSH_USER_STAGING = "administrator"
@@ -44,7 +44,7 @@ stages {
                 sh '''
                     echo "Clean Environment"
                     docker rm -f ${IMAGE_NAME} || echo "container does not exist"
-                    docker run --name ${IMAGE_NAME} -d -p ${PORT_EXPOSED}:80 -e PORT=80 ${URL_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+                    docker run --name ${IMAGE_NAME} -d -p ${PORT_EXPOSED}:80 -e PORT=80 ${REGISTRY_URL}/${IMAGE_NAME}:${IMAGE_TAG}
                     sleep 5
                 '''
             }
@@ -98,7 +98,7 @@ stages {
                     command2="docker stop ${IMAGE_TAG} || echo 'container does not exist'"
                     command3="docker rm ${IMAGE_TAG} || echo 'container does not exist'"
                     command4="docker rmi ${REGISTRY_URL}/${IMAGE_NAME}:${IMAGE_TAG} || echo 'container does not exist'"
-                    command5="docker run --name ${IMAGE_NAME} -d -p ${PORT_EXPOSED}:80 -e PORT=80 ${URL_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                    command5="docker run --name ${IMAGE_NAME} -d -p ${PORT_EXPOSED}:80 -e PORT=80 ${REGISTRY_URL}/${IMAGE_NAME}:${IMAGE_TAG}"
                     command6="sleep 5"
                     ssh -o SendEnv=${IMAGE_NAME} \
                         -o SendEnv=${IMAGE_TAG} \
@@ -125,7 +125,7 @@ stages {
                       command2="docker stop ${IMAGE_TAG} || echo 'container does not exist'"
                       command3="docker rm ${IMAGE_TAG} || echo 'container does not exist'"
                       command4="docker rmi ${REGISTRY_URL}/${IMAGE_NAME}:${IMAGE_TAG} || echo 'container does not exist'"
-                      command5="docker run --name ${IMAGE_NAME} -d -p ${PORT_EXPOSED}:80 -e PORT=80 ${URL_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                      command5="docker run --name ${IMAGE_NAME} -d -p ${PORT_EXPOSED}:80 -e PORT=80 ${REGISTRY_URL}/${IMAGE_NAME}:${IMAGE_TAG}"
                       command6="sleep 5"
                       ssh -o SendEnv=${IMAGE_NAME} \
                           -o SendEnv=${IMAGE_TAG} \
