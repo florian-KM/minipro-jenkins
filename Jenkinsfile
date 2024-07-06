@@ -5,12 +5,12 @@ pipeline{
 environment{
     IMAGE_NAME = 'webstatic'
     PORT_EXPOSED = 81
-    REGISTRY_URL = 'registry.iforce5demo.com'
+    REGISTRY_URL = 'registry.example.com'
     IMAGE_TAG = "1.0"
-    SSH_USER_RELEASE = "administrator"
+    SSH_USER_RELEASE = "root"
     SSH_USER_STAGING = "administrator"
     SSH_HOST_STAGING = "192.168.100.32"
-    SSH_HOST_RELEASE = "192.168.100.32"
+    SSH_HOST_RELEASE = "143.44.162.121"
     DOCKERHUB_AUTH = credentials('DOCKER_HUB')
 }
 
